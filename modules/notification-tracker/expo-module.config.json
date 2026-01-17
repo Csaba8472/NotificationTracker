@@ -1,0 +1,10 @@
+{
+  "name": "notification-tracker",
+  "platforms": ["ios", "android"],
+  "android": {
+    "modules": ["expo.modules.notificationtracker.NotificationTrackerModule"]
+  },
+  "ios": {
+    "modules": ["NotificationTrackerModule"]
+  }
+}
