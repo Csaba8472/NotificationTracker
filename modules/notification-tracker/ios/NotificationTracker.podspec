@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.description = package['description']
   s.author = 'NotificationTracker'
   s.license = 'MIT'
-  s.platforms = { :ios => '15.0' }
+s.platforms = { :ios => '13.0' }
   s.source = { :path => '.' }
   s.static_framework = true
   s.dependency 'ExpoModulesCore'
