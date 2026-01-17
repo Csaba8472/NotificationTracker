@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "NotificationTracker",
+    "slug": "NotificationTracker",
+    "version": "1.0.2",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mihir.notificationtracker"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.mihir.notificationtracker",
+      "permissions": [
+        "android.permission.BIND_NOTIFICATION_LISTENER_SERVICE",
+        "android.permission.QUERY_ALL_PACKAGES"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-font",
+      "./modules/notification-listener/app.plugin.js"
+    ]
+  }
+}

@@ -3,10 +3,10 @@
 # **NotificationTracker 🔔**
 
 <p>
-<img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>  
-<img src="https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white"/>
-
-[![NotificationTracker App](https://img.shields.io/badge/NotificatinTracker✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Miihir79/NotificationTracker#%EF%B8%8F-warning-%EF%B8%8F)
+<img src="https://img.shields.io/badge/Expo-SDK%2054-000020?style=for-the-badge&logo=expo&logoColor=white"/>
+<img src="https://img.shields.io/badge/React_Native-0.81-61DAFB?style=for-the-badge&logo=react&logoColor=white"/>
+<img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>
 
 </p>
 
@@ -28,7 +28,7 @@ Never miss a notification again with Notification Tracker app. This app has feat
 - List of app wise notification
 - Notification Count
 - Search feature🔎 to help you find that missed notification!
-- Get the text message if even if the sender deletes it 🔕 as long as you've received  it as a notification
+- Get the text message if even if the sender deletes it 🔕 as long as you've received it as a notification
 
 ### 📸 Screenshots of the app
 <table>
@@ -42,42 +42,96 @@ Never miss a notification again with Notification Tracker app. This app has feat
     <td>Search app notifs<img src="https://user-images.githubusercontent.com/66465511/230971041-f37b502b-f11d-4ab7-9767-2783a7109079.jpg" width="350">
 </table>
 
-### Package Structure
+### Project Structure
     
-    com.mihir.notificationtracker    # Root Package
+    NotificationTracker                  # Root Directory
     .
-    ├── database            # RoomDb and Interface
-    |
-    ├── helper              # AppObjectController and Extensions
-    |
-    ├── model               # Model classes
-    |
-    └── ui                  # UI/View layer
-        ├── adapter         # RecyclerView Adapter
-        ├── screens         # UI of the app
-        └── vm              # ViewModel
+    ├── App.tsx                          # Main application entry point
+    ├── src/
+    │   ├── components/                  # Reusable UI components
+    │   │   ├── NotificationItem.tsx     # Notification list item
+    │   │   ├── AppItem.tsx              # App list item for app-wise view
+    │   │   └── SearchBar.tsx            # Search input component
+    │   ├── screens/                     # App screens
+    │   │   ├── HomeScreen.tsx           # Home with recent notifications
+    │   │   ├── AllNotificationsScreen.tsx
+    │   │   ├── AppWiseNotificationsScreen.tsx
+    │   │   └── AppNotificationsScreen.tsx
+    │   ├── navigation/                  # Navigation configuration
+    │   │   └── AppNavigator.tsx         # Drawer navigation setup
+    │   ├── database/                    # SQLite database layer
+    │   │   └── index.ts                 # Database operations
+    │   └── types/                       # TypeScript type definitions
+    │       └── index.ts
+    └── modules/
+        └── notification-listener/       # Expo Native Module
+            ├── index.ts                 # TypeScript API
+            ├── expo-module.config.json
+            ├── app.plugin.js            # Expo config plugin
+            └── android/                 # Android native code
+                └── src/main/java/expo/modules/notificationlistener/
+                    ├── NotificationListenerModule.kt
+                    ├── NotificationListenerHelper.kt
+                    └── NotificationService.kt
         
 ## Built Using 🛠
-- Kotlin
-- RoomDB
-- MVVM
-- DataBinding and ViewBinding
-- LiveData
-- NotificationListenerService
+- [Expo SDK 54](https://expo.dev/changelog/sdk-54) - React Native development platform
+- [React Native](https://reactnative.dev/) - Cross-platform mobile framework
+- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
+- [expo-sqlite](https://docs.expo.dev/versions/latest/sdk/sqlite/) - SQLite database
+- [React Navigation](https://reactnavigation.org/) - Navigation library
+- [Expo Native Modules](https://docs.expo.dev/modules/native-module-tutorial/) - Custom native code integration
 
-## ⚠️ Warning ⚠️
-This app uses special permissions like:
-- BIND_NOTIFICATION_LISTENER_SERVICE : To get data of all the incoming notifications
-- QUERY_ALL_PACKAGES : To get information like app name, icon etc of various apps present in your device
+## Native Module
 
-### ***Download the app from here👇***
+The notification tracking functionality requires native Android code to access the `NotificationListenerService` API. This is implemented as an Expo native module following the [Expo Modules API](https://docs.expo.dev/modules/native-module-tutorial/).
 
-[![NotificationTracker App](https://img.shields.io/badge/NotificatinTracker✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Miihir79/NotificationTracker/releases/download/1.0.2/NotificationTrackingApp-1.0.2-debug-25-05.apk)
-    
+The native module provides:
+- `isNotificationListenerEnabled()` - Check if permission is granted
+- `requestNotificationListenerPermission()` - Open settings to grant permission
+- `getAppInfo(packageName)` - Get app name and icon
+- `onNotificationReceived` event - Listen for incoming notifications
+
+## ⚠️ Permissions ⚠️
+This app requires special permissions:
+- **BIND_NOTIFICATION_LISTENER_SERVICE** : To access incoming notifications
+- **QUERY_ALL_PACKAGES** : To get app names and icons
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+ and npm
+- Android Studio (for Android development)
+- Expo CLI
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Miihir79/NotificationTracker.git
+cd NotificationTracker
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
+
+# Run on Android (requires Android emulator or device)
+npm run android
+```
+
+### Building for Production
+
+```bash
+# Build for Android
+npx eas build --platform android
+```
+
 ## How to contribute?
 ### What do you need to get started?
-#### Latest version of android studio and basic android and googling skills will get you going.
-All contributions are welcomed, Properly describe changes made and attach supporting ScreenShots in the PR. For major changes first open an issue.
+#### Node.js, npm, and familiarity with React Native/Expo development.
+All contributions are welcomed. Properly describe changes made and attach supporting ScreenShots in the PR. For major changes first open an issue.
 
 ## Author
 Initial work: <a href="https://github.com/Miihir79">***Mihir Shah***</a> <br>
