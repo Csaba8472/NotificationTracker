@@ -13,6 +13,26 @@
 
 An app that helps keep track of your 🔔Notifications🔔
 
+## Expo (SDK 54) Setup
+
+This repository now includes an Expo app at the repo root; the original Android project remains in `app/`.
+
+### Run the Expo app
+
+```bash
+npm install
+npm start
+```
+
+### Custom native module
+
+Notification tracking is a local native module in `modules/notification-tracker`, so you must build a dev client to use it (Expo Go will not load it):
+
+```bash
+npx expo run:android
+npx expo start --dev-client
+```
+
 ### Idea behind the app
 
 #### Ever swiped away a notification mindlessly ❌ and then never found out what it was❓ Well, that's how I ended up creating this app 💡.

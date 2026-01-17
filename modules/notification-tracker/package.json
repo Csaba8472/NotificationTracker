@@ -1,0 +1,10 @@
+{
+  "name": "notification-tracker",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "description": "Notification tracking native module",
+  "private": true,
+  "peerDependencies": {
+    "expo-modules-core": "*"
+  }
+}
